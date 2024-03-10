@@ -1,27 +1,17 @@
-import Image from "next/image";
-import { arithemania, shunya, shunyaUpdated, social } from "../../public";
+"use client"
+
+import { Card, NextUIProvider } from "@nextui-org/react";
+import AboutArithemania3 from "./AboutArithemania3";
+import Intro from "./Intro";
 
 export default function Home() {
-  return (
-    <>
-      <main className="w-screen h-screen flex flex-col items-center">
-        <Image
-          src={shunyaUpdated}
-          alt=""
-          width={400}
-        />
-        <Image
-          src={arithemania}
-          alt=""
-          width={600}
-        />
-        <Image
-          src={social}
-          alt=""
-          width={200}
-          height={200}
-        />
-      </main>
-    </>
-  );
+   return (
+      <NextUIProvider>
+         <main className="min-h-screen w-screen h-fit flex flex-col items-center gap-4 pb-10">
+            <Intro />
+
+            <AboutArithemania3 />
+         </main>
+      </NextUIProvider>
+   );
 }
