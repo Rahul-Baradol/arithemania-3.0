@@ -12,7 +12,7 @@ const poppins = Poppins({
 
 function Intro() {
    return (
-      <main className='flex flex-col sm:flex-row sm:gap-4 w-screen h-[700px] sm:justify-around items-center'>
+      <main className='flex flex-col sm:flex-row sm:gap-4 w-screen min-h-[500px] h-fit sm:justify-around items-center'>
          <motion.div
             initial={{
                opacity: 0,
