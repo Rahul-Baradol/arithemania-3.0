@@ -63,11 +63,11 @@ function ExploreDomains() {
                            viewport={{ once: true }}
                            transition={{ duration: 1 }}
                         >
-                           <Card className='w-[90vw] h-fit p-4 bg-transparent border-2 text-white'>
-                              <CardHeader>
+                           <Card className={`${poppins.className} w-[90vw] h-fit p-4 bg-transparent border-2 text-white`}>
+                              <CardHeader className='text-lg sm:text-xl lg:text-2xl'>
                                  {domain.title}
                               </CardHeader>
-                              <CardBody>
+                              <CardBody className='text-md sm:text-lg lg:text-xl'>
                                  {domain.content}
                               </CardBody>
                            </Card>
