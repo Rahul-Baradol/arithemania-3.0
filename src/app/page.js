@@ -8,6 +8,7 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
 import { useEffect, useMemo, useState } from "react";
 import Navbar from "./components/Navbar";
+import ExploreDomains from "./components/ExploreDomains";
 
 
 export default function Home() {
@@ -114,10 +115,11 @@ export default function Home() {
             /> : <></>
          }
 
-         <main id="main" className="min-h-screen w-screen h-fit flex flex-col items-center gap-4 pb-10">
+         <main id="main" className="min-h-screen w-screen h-fit flex flex-col items-center gap-6 pb-10">
             <Navbar />
             <Intro />
             <AboutArithemania3 />
+            <ExploreDomains />
          </main>
       </NextUIProvider>
    );
