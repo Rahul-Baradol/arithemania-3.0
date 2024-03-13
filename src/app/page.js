@@ -113,9 +113,11 @@ export default function Home() {
                className="absolute top-0 left-0 w-screen h-screen z-0"
             /> : <></>
          }
+
          <main id="main" className="min-h-screen w-screen h-fit flex flex-col items-center gap-4 pb-10">
             <Navbar />
             <Intro />
+            <AboutArithemania3 />
          </main>
       </NextUIProvider>
    );

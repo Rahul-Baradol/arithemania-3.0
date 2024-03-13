@@ -12,6 +12,7 @@ function Navbar() {
                   src={shunyaUpdated}
                   width={100}
                   height={100}
+                  alt=""
                />
             </a>
          </div>
@@ -21,6 +22,7 @@ function Navbar() {
                   src={pes}
                   width={100}
                   height={100}
+                  alt=""
                />
             </a>
          </div>

@@ -31,7 +31,7 @@ function Intro() {
             transition={{ duration: 1 }}
             className='p-4'
          >
-            <h2 className={`${poppins.className} text-white`}>Shunya Presents...</h2>
+            <h2 className={`${poppins.className} text-white select-none`}>Shunya Presents...</h2>
             <Image
                src={arithemania}
                alt=""
