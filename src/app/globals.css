@@ -4,6 +4,7 @@
 
 body {
   background-color: rgb(38, 1, 67);
+  /* background-color: rgb(60, 1, 105); */
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
