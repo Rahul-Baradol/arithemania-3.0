@@ -1,120 +1,135 @@
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import {
+   collection,
+   addDoc,
+   getDoc,
+   getDocs,
+   doc,
+   setDoc,
+   onSnapshot,
+} from 'firebase/firestore';
+import { db } from '../../../firebase/firebase';
 import { pes, shunyaUpdated } from '../../../public'
 import { useDisclosure, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button } from "@nextui-org/react";
 
 function Navbar() {
    const { isOpen, onOpen, onClose } = useDisclosure();
 
+   const { isOpenSubmissionStatus, onOpenSubmissionsStatus, onOpenChangeSubmissionStatus } = useDisclosure();
+   const [submitStatus, setSubmitStatus] = useState("");
+
    const [memberCount, setMemberCount] = useState(4);
 
    const [teamMembers, setTeamMembers] = useState([
       {
          id: 1,
-         name: '',
-         srn: '',
-         email: '',
-         phone: '',
+         name: 'das',
+         srn: 'PES1UG22CS461',
+         email: 'rahul@gmail.com',
+         phone: '9880050970',
          semester: 1,
          campus: 'RR',
          branch: 'CSE',
          other_branch: '',
          gender: 'Male',
-         guardian_name: '',
-         guardian_phone: '',
+         guardian_name: 'sda',
+         guardian_phone: '9880050970',
          is_hostellite: false,
          hostel_room: '',
       },
       {
          id: 2,
-         name: '',
-         srn: '',
-         email: '',
-         phone: '',
+         name: 'das',
+         srn: 'PES1UG22CS461',
+         email: 'rahul@gmail.com',
+         phone: '9880050970',
          semester: 1,
          campus: 'RR',
          branch: 'CSE',
          other_branch: '',
          gender: 'Male',
-         guardian_name: '',
-         guardian_phone: '',
+         guardian_name: 'sda',
+         guardian_phone: '9880050970',
          is_hostellite: false,
          hostel_room: '',
       },
       {
          id: 3,
-         name: '',
-         srn: '',
-         email: '',
-         phone: '',
+         name: 'das',
+         srn: 'PES1UG22CS461',
+         email: 'rahul@gmail.com',
+         phone: '9880050970',
          semester: 1,
          campus: 'RR',
          branch: 'CSE',
          other_branch: '',
          gender: 'Male',
-         guardian_name: '',
-         guardian_phone: '',
+         guardian_name: 'sda',
+         guardian_phone: '9880050970',
          is_hostellite: false,
          hostel_room: '',
       },
       {
          id: 4,
-         name: '',
-         srn: '',
-         email: '',
-         phone: '',
+         name: 'das',
+         srn: 'PES1UG22CS461',
+         email: 'rahul@gmail.com',
+         phone: '9880050970',
          semester: 1,
          campus: 'RR',
          branch: 'CSE',
          other_branch: '',
          gender: 'Male',
-         guardian_name: '',
-         guardian_phone: '',
+         guardian_name: 'sda',
+         guardian_phone: '9880050970',
          is_hostellite: false,
          hostel_room: '',
       },
    ]);
 
-   const [teamName, setTeamName] = useState('');
+   const [teamName, setTeamName] = useState('mastermind');
    const [domain, setDomain] = useState(
       'Data Science and Intelligent Communication'
    );
-   const [problemStatement, setProblemStatement] = useState('');
-   const [solution, setSolution] = useState('');
+   const [problemStatement, setProblemStatement] = useState('dsaa');
+   const [solution, setSolution] = useState('dsada');
    const [link, setLink] = useState('(Optional PPT Link)');
 
    const [registeredTeams, setRegisteredTeams] = useState([]);
 
    const [loading, setLoading] = useState(false);
 
-   const validateData = (e) => {
-      e.preventDefault();
+   const validateData = () => {
+      // onOpenSubmissionsStatus(isOpenSubmissionStatus);
+      // onClose();
+
       for (let i = 0; i < registeredTeams.length; i++) {
          const team = registeredTeams[i];
          if (team === teamName) {
-            toast('Team Name already taken');
+            setSubmitStatus('Team Name already taken');
             return;
          }
       }
 
       if (teamName.length === 0) {
-         toast('Team Name cannot be empty');
+         setSubmitStatus('Team Name cannot be empty');
          return;
       }
       if (problemStatement.length === 0) {
-         toast('Problem Statement cannot be empty');
+         setSubmitStatus('Problem Statement cannot be empty');
          return;
       }
       if (solution.length === 0) {
-         toast('Solution cannot be empty');
+         setSubmitStatus('Solution cannot be empty');
          return;
       }
 
       for (let i = 0; i < 3; i++) {
          const member = teamMembers[i];
          if (member.name.length === 0) {
-            toast(`Name Field - ${member.id} empty`);
+            setSubmitStatus(`Name Field - ${member.id} empty`);
             return;
          }
          if (
@@ -122,11 +137,11 @@ function Navbar() {
             !member.srn.includes('PES' || 'pes') ||
             member.srn.length < 13
          ) {
-            toast(`SRN - ${member.id} invalid`);
+            setSubmitStatus(`SRN - ${member.id} invalid`);
             return;
          }
          if (!member.email.includes('@') && !member.email.includes('.')) {
-            toast(`Email - ${member.id} invalid`);
+            setSubmitStatus(`Email - ${member.id} invalid`);
             return;
          }
          if (
@@ -134,16 +149,16 @@ function Navbar() {
             member.phone.toString().length < 10 ||
             member.phone.toString().length > 10
          ) {
-            toast(`Phone - ${member.id} invalid`);
+            setSubmitStatus(`Phone - ${member.id} invalid`);
             return;
          }
          if (member.branch === 'Others') {
             if (member.other_branch.length === 0) {
-               toast(`Branch Name - ${member.id} empty`);
+               setSubmitStatus(`Branch Name - ${member.id} empty`);
             }
          }
          if (member.guardian_name.length === 0) {
-            toast(`Parents Name - ${member.id} empty`);
+            setSubmitStatus(`Parents Name - ${member.id} empty`);
             return;
          }
          if (
@@ -151,12 +166,12 @@ function Navbar() {
             member.guardian_phone.toString().length < 10 ||
             member.guardian_phone.toString().length > 10
          ) {
-            toast(`Parents Phone - ${member.id} invalid`);
+            setSubmitStatus(`Parents Phone - ${member.id} invalid`);
             return;
          }
          if (member.is_hostellite) {
             if (member.hostel_room.length === 0) {
-               toast(`Enter Hostel Room - ${member.id}`);
+               setSubmitStatus(`Enter Hostel Room - ${member.id}`);
                return;
             }
          }
@@ -165,7 +180,7 @@ function Navbar() {
       handleSubmit();
 
       // if (link.length === 0) {
-      //   toast('Link cannot be empty');
+      // setSubmitStatus('Link cannot be empty');
       //   return;
       // }
 
@@ -178,8 +193,8 @@ function Navbar() {
       //   for (let i = 0; i < teamMembers.length; i++) {
       //     const member = teamMembers[i];
       //     if (member.name.length === 0) {
-      //       cntmem++;
-      //       // toast(`Name Field - ${member.id} empty`);
+      //       cntmem++;   // 
+      // setSubmitStatus(`Name Field - ${member.id} empty`);
       //       // return;
       //     }
       //     if (
@@ -187,13 +202,13 @@ function Navbar() {
       //       !member.srn.includes('PES' || 'pes') ||
       //       member.srn.length < 13
       //     ) {
-      //       cntsrn++;
-      //       // toast(`SRN - ${member.id} invalid`);
+      //       cntsrn++;   // 
+      // setSubmitStatus(`SRN - ${member.id} invalid`);
       //       // return;
       //     }
       //     if (!member.email.includes('@') && !member.email.includes('.')) {
-      //       cntemail++;
-      //       // toast(`Email - ${member.id} invalid`);
+      //       cntemail++;   // 
+      // setSubmitStatus(`Email - ${member.id} invalid`);
       //       // return;
       //     }
       //     if (
@@ -201,19 +216,19 @@ function Navbar() {
       //       member.phone.toString().length < 10 ||
       //       member.phone.toString().length > 10
       //     ) {
-      //       cntphone++;
-      //       // toast(`Phone - ${member.id} invalid`);
+      //       cntphone++;   // 
+      // setSubmitStatus(`Phone - ${member.id} invalid`);
       //       // return;
       //     }
       //     if (member.branch === 'Others') {
       //       if (member.other_branch.length === 0) {
-      //         cntbranch++;
-      //         // toast(`Branch Name - ${member.id} empty`);
+      //         cntbranch++;     // 
+      // setSubmitStatus(`Branch Name - ${member.id} empty`);
       //       }
       //     }
       //     if (member.guardian_name.length === 0) {
-      //       cntguardian_name++;
-      //       // toast(`Parents Name - ${member.id} empty`);
+      //       cntguardian_name++;   // 
+      // setSubmitStatus(`Parents Name - ${member.id} empty`);
       //       // return;
       //     }
       //     if (
@@ -221,14 +236,14 @@ function Navbar() {
       //       member.guardian_phone.toString().length < 10 ||
       //       member.guardian_phone.toString().length > 10
       //     ) {
-      //       cntguardian_phone++;
-      //       // toast(`Parents Phone - ${member.id} invalid`);
+      //       cntguardian_phone++;   // 
+      // setSubmitStatus(`Parents Phone - ${member.id} invalid`);
       //       // return;
       //     }
       //     if (member.is_hostellite) {
       //       if (member.hostel_room.length === 0) {
-      //         cnthostel_room++;
-      //         // toast(`Enter Hostel Room - ${member.id}`);
+      //         cnthostel_room++;     // 
+      // setSubmitStatus(`Enter Hostel Room - ${member.id}`);
       //         // return;
       //       }
       //     }
@@ -237,29 +252,29 @@ function Navbar() {
       // })
 
       // firstJob.then(()=>{
-      //   if (cntmem > 1) {
-      //     toast(`Name Field - ${member.id} empty`);
+      //   if (cntmem > 1) { 
+      // setSubmitStatus(`Name Field - ${member.id} empty`);
       //     return;
-      //   } else if (cntsrn > 1) {
-      //     toast(`SRN - ${member.id} invalid`);
+      //   } else if (cntsrn > 1) { 
+      // setSubmitStatus(`SRN - ${member.id} invalid`);
       //     return;
-      //   } else if (cntemail > 1) {
-      //     toast(`Email - ${member.id} invalid`);
+      //   } else if (cntemail > 1) { 
+      // setSubmitStatus(`Email - ${member.id} invalid`);
       //     return;
-      //   } else if (cntphone > 1) {
-      //     toast(`Phone - ${member.id} invalid`);
+      //   } else if (cntphone > 1) { 
+      // setSubmitStatus(`Phone - ${member.id} invalid`);
       //     return;
-      //   } else if (cntbranch > 1) {
-      //     toast(`Branch Name - ${member.id} empty`);
+      //   } else if (cntbranch > 1) { 
+      // setSubmitStatus(`Branch Name - ${member.id} empty`);
       //     return;
-      //   } else if (cntguardian_name  > 1) {
-      //     toast(`Parents Name - ${member.id} empty`);
+      //   } else if (cntguardian_name  > 1) { 
+      // setSubmitStatus(`Parents Name - ${member.id} empty`);
       //     return;
-      //   } else if (cntguardian_phone > 1) {
-      //     toast(`Parents Phone - ${member.id} invalid`);
+      //   } else if (cntguardian_phone > 1) { 
+      // setSubmitStatus(`Parents Phone - ${member.id} invalid`);
       //     return;
-      //   } else if (cnthostel_room > 1) {
-      //     toast(`Enter Hostel Room - ${member.id}`);
+      //   } else if (cnthostel_room > 1) { 
+      // setSubmitStatus(`Enter Hostel Room - ${member.id}`);
       //     return;
       //   } else {
       //     handleSubmit();
@@ -363,7 +378,7 @@ function Navbar() {
       const submitData = async () => {
          try {
             setLoading(true);
-            await setDoc(doc(db, 'teams2024', teamName), {
+            await setDoc(doc(db, 'arithemania3Registrations', teamName), {
                teamName,
                domain,
                problemStateMent: problemStatement,
@@ -372,17 +387,27 @@ function Navbar() {
                teamMembers,
             }).then(() => {
                setLoading(false);
-               toast('Your response has been successfully submitted.');
-               setCookie('completedRegistration', 'true');
+               setSubmitStatus('Your response has been successfully submitted.');
+               // setCookie('completedRegistration', 'true');
             });
             await resetData();
          } catch (err) {
-            toast('There seems to be a problem submitting your response.');
+            setSubmitStatus('There seems to be a problem submitting your response.');
             setLoading(false);
          }
       };
       submitData();
    };
+
+   useEffect(() => {
+      const getRegisteredTeams = async () => {
+         const querySnapshot = await getDocs(collection(db, 'teams2024'));
+         querySnapshot.forEach((doc) => {
+            setRegisteredTeams((prev) => [...prev, doc.id]);
+         });
+      };
+      getRegisteredTeams();
+   }, []);
 
    return (
       <>
@@ -440,7 +465,6 @@ function Navbar() {
                         <ModalHeader className="text-white flex flex-col gap-1">Registration</ModalHeader>
                         <ModalBody>
                            <form
-                              // onSubmit={validateData}
                               className="flex flex-col text-left items-center w-full sm:rounded-[20px] sm:border-[1px] sm:border-white] relative sm:p-10 sm:gradient-05"
                            >
                               <div className="text-lg flex flex-col font-mono text-white mb-6 font-bold w-full">
@@ -749,21 +773,12 @@ function Navbar() {
                                     ))}
                                  </div>
                               </div>
-
-                              {/* <button
-                                 className="text-white border-[1px] p-[15px] rounded w-[50%] mb-[30px] mt-20 font-extrabold text-2xl hover:bg-[rgba(0,0,0,0.3)]"
-                                 type="submit"
-                              >
-                                 <div className='text-sm md:text-lg'>
-                                    {loading ? 'Submitting...' : 'Register'}
-                                 </div>
-                              </button> */}
                            </form>
                         </ModalBody>
                         <ModalFooter>
-                           <Button color="primary" onPress={onClose} className='px-6 py-2 bg-[#390461]'>
+                           <button onClick={validateData} className='px-6 py-3 text-[15px] bg-[#390461] rounded-lg text-white'>
                               {loading ? 'Submitting...' : 'Register'}
-                           </Button>
+                           </button>
                         </ModalFooter>
                      </>
                   )}
