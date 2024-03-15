@@ -13,11 +13,16 @@ import {
 import { db } from '../../../firebase/firebase';
 import { pes, shunyaUpdated } from '../../../public'
 import { useDisclosure, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button } from "@nextui-org/react";
+import { useCookies } from 'react-cookie';
 
 function Navbar() {
-   const { isOpen, onOpen, onClose } = useDisclosure();
+   // const { isOpen, onOpen, onClose } = useDisclosure();
+   // const { isOpenSubmissionStatus, submitStatusModal.onOpen, onCloseSubmissionStatus } = useDisclosure();
 
-   const { isOpenSubmissionStatus, onOpenSubmissionsStatus, onOpenChangeSubmissionStatus } = useDisclosure();
+   const [cookies, setCookie] = useCookies(['completedRegistration']);
+   const formModal = useDisclosure();
+   const submitStatusModal = useDisclosure();
+
    const [submitStatus, setSubmitStatus] = useState("");
 
    const [memberCount, setMemberCount] = useState(4);
@@ -101,28 +106,33 @@ function Navbar() {
 
    const [loading, setLoading] = useState(false);
 
-   const validateData = () => {
-      // onOpenSubmissionsStatus(isOpenSubmissionStatus);
-      // onClose();
-
+   const validateData = (onClose) => {
       for (let i = 0; i < registeredTeams.length; i++) {
          const team = registeredTeams[i];
          if (team === teamName) {
             setSubmitStatus('Team Name already taken');
+            // onClose();
+            submitStatusModal.onOpen();
             return;
          }
       }
 
       if (teamName.length === 0) {
          setSubmitStatus('Team Name cannot be empty');
+         // onClose();
+         submitStatusModal.onOpen();
          return;
       }
       if (problemStatement.length === 0) {
          setSubmitStatus('Problem Statement cannot be empty');
+         // onClose();
+         submitStatusModal.onOpen();
          return;
       }
       if (solution.length === 0) {
          setSubmitStatus('Solution cannot be empty');
+         // onClose();
+         submitStatusModal.onOpen();
          return;
       }
 
@@ -130,6 +140,8 @@ function Navbar() {
          const member = teamMembers[i];
          if (member.name.length === 0) {
             setSubmitStatus(`Name Field - ${member.id} empty`);
+            // onClose();
+            submitStatusModal.onOpen();
             return;
          }
          if (
@@ -138,10 +150,14 @@ function Navbar() {
             member.srn.length < 13
          ) {
             setSubmitStatus(`SRN - ${member.id} invalid`);
+            // onClose();
+            submitStatusModal.onOpen();
             return;
          }
          if (!member.email.includes('@') && !member.email.includes('.')) {
             setSubmitStatus(`Email - ${member.id} invalid`);
+            // onClose();
+            submitStatusModal.onOpen();
             return;
          }
          if (
@@ -150,15 +166,21 @@ function Navbar() {
             member.phone.toString().length > 10
          ) {
             setSubmitStatus(`Phone - ${member.id} invalid`);
+            // onClose();
+            submitStatusModal.onOpen();
             return;
          }
          if (member.branch === 'Others') {
             if (member.other_branch.length === 0) {
                setSubmitStatus(`Branch Name - ${member.id} empty`);
+               // onClose();
+               submitStatusModal.onOpen();
             }
          }
          if (member.guardian_name.length === 0) {
             setSubmitStatus(`Parents Name - ${member.id} empty`);
+            // onClose();
+            submitStatusModal.onOpen();
             return;
          }
          if (
@@ -167,17 +189,21 @@ function Navbar() {
             member.guardian_phone.toString().length > 10
          ) {
             setSubmitStatus(`Parents Phone - ${member.id} invalid`);
+            // onClose();
+            submitStatusModal.onOpen();
             return;
          }
          if (member.is_hostellite) {
             if (member.hostel_room.length === 0) {
                setSubmitStatus(`Enter Hostel Room - ${member.id}`);
+               // onClose();
+               submitStatusModal.onOpen();
                return;
             }
          }
       }
 
-      handleSubmit();
+      handleSubmit(onClose);
 
       // if (link.length === 0) {
       // setSubmitStatus('Link cannot be empty');
@@ -298,7 +324,7 @@ function Navbar() {
       });
    };
 
-   const handleSubmit = async () => {
+   const handleSubmit = async (onClose) => {
       const resetData = () =>
          new Promise(() => {
             setMemberCount(4);
@@ -388,12 +414,16 @@ function Navbar() {
             }).then(() => {
                setLoading(false);
                setSubmitStatus('Your response has been successfully submitted.');
-               // setCookie('completedRegistration', 'true');
+               onClose();
+               submitStatusModal.onOpen();
+               setCookie('completedRegistration', 'true');
             });
             await resetData();
          } catch (err) {
             setSubmitStatus('There seems to be a problem submitting your response.');
             setLoading(false);
+            onClose();
+            submitStatusModal.onOpen();
          }
       };
       submitData();
@@ -401,7 +431,7 @@ function Navbar() {
 
    useEffect(() => {
       const getRegisteredTeams = async () => {
-         const querySnapshot = await getDocs(collection(db, 'teams2024'));
+         const querySnapshot = await getDocs(collection(db, 'arithemania3Registrations'));
          querySnapshot.forEach((doc) => {
             setRegisteredTeams((prev) => [...prev, doc.id]);
          });
@@ -445,7 +475,14 @@ function Navbar() {
                viewport={{ once: true }}
             >
                <button
-                  onClick={onOpen}
+                  onClick={() => {
+                     if (cookies.completedRegistration) {
+                        setSubmitStatus('You have already registered');
+                        submitStatusModal.onOpen();
+                     } else {
+                        formModal.onOpen();
+                     }
+                  }}
                   className="bg-transparent text-white font-semibold text-[10px] px-4 py-2 sm:text-[12px] sm:px-8 sm:py-3 mr-5 rounded-lg border-2 border-white hover:bg-white hover:text-black transition duration-300"
                >
                   Register
@@ -454,8 +491,8 @@ function Navbar() {
 
             <Modal
                size={"full"}
-               isOpen={isOpen}
-               onClose={onClose}
+               isOpen={formModal.isOpen}
+               onClose={formModal.onClose}
                className='bg-[#2a0447]'
                scrollBehavior={"inside"}
             >
@@ -635,10 +672,10 @@ function Navbar() {
                                                    handleTextChange(data.id, e.target.value, 'semester')
                                                 }
                                              >
-                                                <option value={1}>1</option>
-                                                <option value={3}>3</option>
-                                                <option value={5}>5</option>
-                                                <option value={7}>7</option>
+                                                <option className='bg-[#390461]' value={1}>1</option>
+                                                <option className='bg-[#390461]' value={3}>3</option>
+                                                <option className='bg-[#390461]' value={5}>5</option>
+                                                <option className='bg-[#390461]' value={7}>7</option>
                                              </select>
                                           </label>
 
@@ -650,9 +687,9 @@ function Navbar() {
                                                    handleTextChange(data.id, e.target.value, 'campus')
                                                 }
                                              >
-                                                <option value="RR">RR</option>
-                                                <option value="EC">EC</option>
-                                                <option value="HN">HN</option>
+                                                <option className='bg-[#390461]' value="RR">RR</option>
+                                                <option className='bg-[#390461]' value="EC">EC</option>
+                                                <option className='bg-[#390461]' value="HN">HN</option>
                                              </select>
                                           </label>
 
@@ -664,12 +701,12 @@ function Navbar() {
                                                    handleTextChange(data.id, e.target.value, 'branch')
                                                 }
                                              >
-                                                <option value="CSE">CSE</option>
-                                                <option value="ECE">ECE</option>
-                                                <option value="EEE">EEE</option>
-                                                <option value="Mech">Mech</option>
-                                                <option value="BioTech">BioTech</option>
-                                                <option value="Others">Others</option>
+                                                <option className='bg-[#390461]' value="CSE">CSE</option>
+                                                <option className='bg-[#390461]' value="ECE">ECE</option>
+                                                <option className='bg-[#390461]' value="EEE">EEE</option>
+                                                <option className='bg-[#390461]' value="Mech">Mech</option>
+                                                <option className='bg-[#390461]' value="BioTech">BioTech</option>
+                                                <option className='bg-[#390461]' value="Others">Others</option>
                                              </select>
                                           </label>
                                           {data.branch === 'Others' && (
@@ -698,9 +735,9 @@ function Navbar() {
                                                    handleTextChange(data.id, e.target.value, 'gender')
                                                 }
                                              >
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
-                                                <option value="Others">Others</option>
+                                                <option className='bg-[#390461]' value="Male">Male</option>
+                                                <option className='bg-[#390461]' value="Female">Female</option>
+                                                <option className='bg-[#390461]' value="Others">Others</option>
                                              </select>
                                           </label>
 
@@ -748,8 +785,8 @@ function Navbar() {
                                                    )
                                                 }
                                              >
-                                                <option value="No">No</option>
-                                                <option value="Yes">Yes</option>
+                                                <option className='bg-[#390461]' value="No">No</option>
+                                                <option className='bg-[#390461]' value="Yes">Yes</option>
                                              </select>
                                           </label>
                                           {data.is_hostellite && (
@@ -774,10 +811,39 @@ function Navbar() {
                                  </div>
                               </div>
                            </form>
+
+                           
                         </ModalBody>
                         <ModalFooter>
-                           <button onClick={validateData} className='px-6 py-3 text-[15px] bg-[#390461] rounded-lg text-white'>
+                           <button onClick={() => {
+                              validateData(onClose);
+                           }} className='px-6 py-3 text-[15px] bg-[#390461] rounded-lg text-white'>
                               {loading ? 'Submitting...' : 'Register'}
+                           </button>
+                        </ModalFooter>
+                     </>
+                  )}
+               </ModalContent>
+            </Modal>
+
+            <Modal
+               isOpen={submitStatusModal.isOpen}
+               onClose={submitStatusModal.onClose}
+               className='bg-[#2a0447]'
+               scrollBehavior={"inside"}
+            >
+               <ModalContent>
+                  {(onClose) => (
+                     <>
+                        <ModalHeader className="text-white flex flex-col gap-1">Submission Status</ModalHeader>
+                        <ModalBody>
+                           <p className='text-white'>
+                              {submitStatus}   
+                           </p> 
+                        </ModalBody>
+                        <ModalFooter>
+                           <button onClick={onClose} className='px-6 py-3 text-[15px] bg-[#390461] rounded-lg text-white'>
+                              Close
                            </button>
                         </ModalFooter>
                      </>
