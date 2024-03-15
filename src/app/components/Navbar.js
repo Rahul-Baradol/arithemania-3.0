@@ -96,7 +96,7 @@ function Navbar() {
 
    const [teamName, setTeamName] = useState('mastermind');
    const [domain, setDomain] = useState(
-      'Data Science and Intelligent Communication'
+      'Computational Bioinformatics'
    );
    const [problemStatement, setProblemStatement] = useState('dsaa');
    const [solution, setSolution] = useState('dsada');
@@ -519,21 +519,22 @@ function Navbar() {
                                  />
                               </label>
 
-                              {/* <label className="text-lg flex flex-col font-mono text-white mb-6 font-bold w-full">
+                              <label className="text-lg flex flex-col font-mono text-white mb-6 font-bold w-full">
                                  Domain
                                  <select
-                                    className="text-base w-full h-12 rounded mt-4 pl-2 pr-2 text-white font-mono font-normal bg-primary-blue border-[1px] border-[#374151] focus:outline-none"
+                                    className="text-base w-full h-12 rounded mt-4 pl-2 pr-2 text-white font-mono font-normal bg-transparent border-[1px] border-[#374151] focus:outline-none"
                                     onChange={(e) => setDomain(e.target.value)}
                                  >
-                                    <option value="Data Science and Intelligent Communication">
-                                    Data Science and Intelligent Communication
+                                    <option className='bg-[#390461]' value="Computational Bioinformatics">
+                                       Computational Bioinformatics
                                     </option>
-                                    <option value="Robotics and Automation">
-                                    Robotics and Automation
+                                    <option className='bg-[#390461]' value="Finance">
+                                       Finance
                                     </option>
-                                    <option value="Bigdata Analytics">Bigdata Analytics</option>
+                                    <option className='bg-[#390461]' value="Security">Security</option>
+                                    <option className='bg-[#390461]' value="Networking">Networking</option>
                                  </select>
-                              </label> */}
+                              </label>
 
                               <label className="text-lg flex flex-col font-mono text-white mb-6 font-bold w-full">
                                  Problem Statement
@@ -812,7 +813,7 @@ function Navbar() {
                               </div>
                            </form>
 
-                           
+
                         </ModalBody>
                         <ModalFooter>
                            <button onClick={() => {
@@ -838,8 +839,8 @@ function Navbar() {
                         <ModalHeader className="text-white flex flex-col gap-1">Submission Status</ModalHeader>
                         <ModalBody>
                            <p className='text-white'>
-                              {submitStatus}   
-                           </p> 
+                              {submitStatus}
+                           </p>
                         </ModalBody>
                         <ModalFooter>
                            <button onClick={onClose} className='px-6 py-3 text-[15px] bg-[#390461] rounded-lg text-white'>
