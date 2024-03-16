@@ -673,10 +673,10 @@ function Navbar() {
                                                    handleTextChange(data.id, e.target.value, 'semester')
                                                 }
                                              >
-                                                <option className='bg-[#390461]' value={1}>1</option>
-                                                <option className='bg-[#390461]' value={3}>3</option>
-                                                <option className='bg-[#390461]' value={5}>5</option>
-                                                <option className='bg-[#390461]' value={7}>7</option>
+                                                <option className='bg-[#390461]' value={2}>2</option>
+                                                <option className='bg-[#390461]' value={4}>4</option>
+                                                <option className='bg-[#390461]' value={6}>6</option>
+                                                <option className='bg-[#390461]' value={8}>8</option>
                                              </select>
                                           </label>
 

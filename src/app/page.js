@@ -1,21 +1,21 @@
 "use client"
 
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, NextUIProvider } from "@nextui-org/react";
+import { NextUIProvider } from "@nextui-org/react";
 import AboutArithemania3 from "./components/AboutArithemania3";
 import Intro from "./components/Intro";
-import { PastEvents } from "./components/PastEvents";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
 import { useEffect, useMemo, useState } from "react";
 import Navbar from "./components/Navbar";
 import ExploreDomains from "./components/ExploreDomains";
 import Footer from "./components/Ender";
+import ScrollProgress from "./components/ScrollProgress";
 
 export default function Home() {
    const [init, setInit] = useState(false);
 
    const particlesLoaded = (container) => {
-      console.log(container);
+      // Do nothing for now :)
    };
 
    const options = useMemo(
@@ -119,6 +119,7 @@ export default function Home() {
          }
 
          <main id="main" className="min-h-screen w-screen h-fit flex flex-col items-center gap-6">
+            <ScrollProgress />
             <Navbar />
             <Intro />
             <AboutArithemania3 />
