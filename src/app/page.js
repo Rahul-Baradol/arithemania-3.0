@@ -9,6 +9,7 @@ import { loadFull } from "tsparticles";
 import { useEffect, useMemo, useState } from "react";
 import Navbar from "./components/Navbar";
 import ExploreDomains from "./components/ExploreDomains";
+import Footer from "./components/Ender";
 
 export default function Home() {
    const [init, setInit] = useState(false);
@@ -117,11 +118,12 @@ export default function Home() {
                <></>
          }
 
-         <main id="main" className="min-h-screen w-screen h-fit flex flex-col items-center gap-6 pb-10">
+         <main id="main" className="min-h-screen w-screen h-fit flex flex-col items-center gap-6">
             <Navbar />
             <Intro />
             <AboutArithemania3 />
             <ExploreDomains />
+            <Footer />
          </main>
       </NextUIProvider>
    );

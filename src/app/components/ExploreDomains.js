@@ -52,7 +52,7 @@ function ExploreDomains() {
 
                            initial={{
                               opacity: 0,
-                              x: -50 
+                              x: (index % 2 === 0) ? -50 : 50
                            }}
 
                            whileInView={{
