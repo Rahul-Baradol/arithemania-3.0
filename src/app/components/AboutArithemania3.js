@@ -30,7 +30,7 @@ function AboutArithemania3() {
             <TypingText title="|  About Arithemania 3.0" textStyles="text-center text-md sm:text-xl" />
                <motion.p
                   variants={fadeIn('up', 'tween', 0.2, 1)}
-                  className="mt-[8px] font-normal text-lg sm:text-xl lg:text-2xl text-center text-secondary-white"
+                  className="mt-[8px] font-normal text-lg sm:text-xl text-center text-secondary-white"
                >
                   <span>
                      Announcing ARITHEMANIA 3.0, our flagship event! Prepare for a distinctive hackathon experience unlike any other. Scheduled for the 12th and 13th of April, this 30-hour on-campus hackathon promises a blend of excitement, skill enhancement, and engaging games. Distinguished as the pioneer in Mathematics hackathons, ARITHEMANIA challenges participants to showcase their prowess in both arithmetic and coding. This event stands out as a unique opportunity for participants to leverage applied mathematics, contributing to real-world impact.

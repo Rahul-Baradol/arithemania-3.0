@@ -80,7 +80,7 @@ function Footer() {
             </div>
          </div>
          <div className="flex flex-row justify-center items-center h-20 bg-transparent text-white">
-            <p className="text-center">© 2024 Arithemania. All rights reserved.</p>
+            <p className="text-center text-sm md:text-medium">© 2024 Arithemania. All rights reserved.</p>
          </div>
       </div>
    )

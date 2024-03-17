@@ -33,7 +33,7 @@ function ExploreDomains() {
                <TypingText title="| Explore " textStyles="text-center text-md sm:text-xl" />
                <motion.p
                   variants={fadeIn('right', 'tween', 0.2, 1)} // Modify the direction to 'right'
-                  className="mt-[8px] font-normal text-center text-lg sm:text-xl lg:text-2xl"
+                  className="mt-[8px] font-normal text-center text-lg sm:text-xl"
                >
                   <span>
                      Arithemania 3.0 will feature a variety of domains, each with its own unique set of challenges. Participants will have the opportunity to choose from a range of domains, including:
