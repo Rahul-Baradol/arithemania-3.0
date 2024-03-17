@@ -36,6 +36,7 @@ function Intro() {
                src={arithemania}
                alt=""
                width={700}
+               priority={true}
             />        
          </motion.div>
       </main>

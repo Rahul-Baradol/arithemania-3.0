@@ -41,14 +41,16 @@ function ExploreDomains() {
                </motion.p>
             </motion.div>
             <div className="w-[90vw] h-fit flex justify-center">
-               <ul className="flex flex-col gap-4">
+               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   {
                      exploreDomains.map((domain, index) => {
                         return <motion.li
                            key={index}
                            variants={fadeIn('right', 'tween', 0.2, 1)} // Modify the direction to 'right'
-                           // whileHover={{ scale: 1.05 }}
-                           // whileTap={{ scale: 0.9 }}
+                           whileHover={{ 
+                              scale: 1.035,
+                              boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)"
+                           }}
 
                            initial={{
                               opacity: 0,
@@ -63,11 +65,11 @@ function ExploreDomains() {
                            viewport={{ once: true }}
                            transition={{ duration: 1 }}
                         >
-                           <Card className={`${poppins.className} w-[90vw] h-fit p-4 bg-transparent border-2 text-white`}>
-                              <CardHeader className='text-lg sm:text-xl lg:text-2xl'>
+                           <Card className={`${poppins.className} w-full h-full p-4 bg-[#260143] border-2 border-b-0 border-r-0 border-violet-800 text-white`}>
+                              <CardHeader className='text-lg sm:text-xl'>
                                  {domain.title}
                               </CardHeader>
-                              <CardBody className='text-md sm:text-lg lg:text-xl'>
+                              <CardBody className='text-md sm:text-lg'>
                                  {domain.content}
                               </CardBody>
                            </Card>
