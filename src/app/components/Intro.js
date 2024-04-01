@@ -29,7 +29,7 @@ function Intro() {
 
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className='p-4'
+            className='p-4 flex flex-col gap-3'
          >
             <h2 className={`${poppins.className} text-white select-none`}>Shunya Presents...</h2>
             <Image
