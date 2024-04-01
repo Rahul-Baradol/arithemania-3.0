@@ -449,7 +449,7 @@ function Navbar() {
                transition={{ duration: 1 }}
                viewport={{ once: true }}
             >
-               <a>
+               <a target='_blank' href='https://shunyapes.vercel.app'>
                   <Image
                      src={shunyaUpdated}
                      className='w-[60px] md:w-[75px] lg:w-[100px] aspect-auto'

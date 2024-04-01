@@ -59,7 +59,7 @@ function Footer() {
                         className='h-auto'
                         alt=""
                      />
-                     <p>shunyapes.com</p>
+                     <p>shunyapes.vercel.app</p>
                   </div>
                   <div className='flex flex-row gap-2 w-fit items-center'>
                      <Image 
@@ -68,7 +68,7 @@ function Footer() {
                         className='h-auto'
                         alt=""
                      />
-                     <p>shunya</p>
+                     <p>shunya-pes</p>
                   </div>
                </div>
                <div className='text-medium sm:text-lg text-center'>
