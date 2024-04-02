@@ -103,6 +103,7 @@ function Navbar() {
    const [link, setLink] = useState('(Optional PPT Link)');
 
    const [registeredTeams, setRegisteredTeams] = useState([]);
+   const [isGPUNeeded, setIsGPUNeeded] = useState("No");
 
    const [loading, setLoading] = useState(false);
 
@@ -411,6 +412,7 @@ function Navbar() {
                solution,
                link,
                teamMembers,
+               isGPUNeeded,
             }).then(() => {
                setLoading(false);
                setSubmitStatus('Your response has been successfully submitted.');
@@ -564,6 +566,21 @@ function Navbar() {
                                     value={solution}
                                     onChange={(e) => setSolution(e.target.value)}
                                  ></textarea>
+                              </label>
+
+                              <label className="text-lg flex flex-col font-mono text-white mb-6 font-bold w-full">
+                                 Is GPU needed for your solution?
+                                 <select
+                                    className="text-base w-full h-12 rounded mt-4 pl-2 pr-2 text-white font-mono font-normal bg-transparent border-[1px] border-[#374151] focus:outline-none"
+                                    onChange={(e) => setIsGPUNeeded(e.target.value)}
+                                 >
+                                    <option className='bg-[#390461]' value="No">
+                                       No
+                                    </option>
+                                    <option className='bg-[#390461]' value="Yes">
+                                       Yes
+                                    </option>
+                                 </select>
                               </label>
 
                               {/*<label className="text-lg flex flex-col font-mono text-white mb-6 font-bold w-full">
