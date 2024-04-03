@@ -443,7 +443,7 @@ function Navbar() {
 
    return (
       <>
-         <nav className="absolute z-10 pt-2 flex flex-row w-screen h-fit justify-between items-center bg-transparent">
+         <nav className="absolute overflow-hidden z-10 pt-2 flex flex-row w-screen h-fit justify-between items-center bg-transparent">
             <motion.div
                className='h-fit w-fit flex items-center gap-1 pl-2'
                initial={{ opacity: 0, x: -20, y: -20 }}

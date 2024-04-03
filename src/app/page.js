@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 import ExploreDomains from "./components/ExploreDomains";
 import Footer from "./components/Ender";
 import ScrollProgress from "./components/ScrollProgress";
+import Sponsors from "./components/Sponsors";
 
 export default function Home() {
    const [init, setInit] = useState(false);
@@ -119,11 +120,12 @@ export default function Home() {
          }
 
          <main id="main" className="min-h-screen w-screen h-fit flex flex-col items-center gap-6">
-            <ScrollProgress />
+            {/* <ScrollProgress /> */}
             <Navbar />
             <Intro />
             <AboutArithemania3 />
             <ExploreDomains />
+            {/* <Sponsors /> */}
             <Footer />
          </main>
       </NextUIProvider>

@@ -14,7 +14,7 @@ const poppins = Poppins({
 function ExploreDomains() {
    return (
       <>
-         <div className="z-10 mt-[20px] text-lg sm:text-xl flex flex-col gap-6 text-white w-[90vw]">
+         <div className="z-10 mt-[20px] overflow-hidden text-lg sm:text-xl flex flex-col gap-6 text-white w-[90vw]">
             <motion.div
                initial={{
                   opacity: 0,

@@ -52,7 +52,71 @@ const exploreDomains = [
    }
 ]
 
+const sponsors = [
+   {
+      image: "/e2e_1.png",
+      description: `
+         E2E Networks is the leading hyperscaler from India with focus on advanced Cloud GPU infrastructure,
+      `
+   },
+   {
+      image: "/wolfram.png",
+      description: `
+      Founded by Stephen Wolfram in 1987, Wolfram Research is one of the world's most respected computer, web, and cloud software companies—as well as a powerhouse of scientific and technical innovation. As pioneers in computation and computational knowledge, we have pursued a long-term vision to develop the science, technology, and tools to make computation an ever-more-potent force in today's and tomorrow's world.
+      `
+   },
+   {
+      image: "/oreilly.png",
+      description: `
+      For over 40 years O'Reilly has provided technology and business training, knowledge, and insight to help companies succeed. Our unique network of experts and innovators share their knowledge and expertise through books, articles, and our online learning platform. O'Reilly online learning gives you on-demand access to live training courses, in-depth learning paths, interactive coding environments, certification prep materials, and a vast collection of text and video from O'Reilly and 200+ other publishers. For more information visit oreilly.com.
+      `
+   },
+   {
+      image: "/celio.png",
+      description: `
+      Founded in 1985, Celio has become, in less than 30 years, the leading men's ready-to-wear brand in France and a must-see internationally.
+
+      This modern fashion brand offers the most exotic fashion wear for fashion-forward men.
+      `
+   },
+   {
+      image: "/leons.png",
+      description: `
+      Your go-to spot for delicious fast food delights.  With a wide range of juicy burgers, tasty grills, and scrumptious sides, all made with top-notch ingredients and located near our campus, This place is perfect for hanging out with friends while enjoying great food.
+      `
+   },
+   {
+      image: "/barista.jpg",
+      description: `
+      An artistic fusion haven nestled near Vega City Mall in JP Nagar. With a serene atmosphere encouraging mindful engagement, creative activities, and a strong sense of community, it's the perfect destination to savor delicious fare while immersing in local art and vibrant conversations
+      `
+   },
+   {
+      image: "/toc.jpg",
+      description: `
+      Creating delightful moments, everyday!
+
+      Enjoy Their freshly made, high-quality homemade chocolates in a variety of mouthwatering flavors. Swing by our new branches in JP Nagar for a taste of their irresistible chocolaty treats."
+      `
+   },
+   {
+      image: "/mishka.png",
+      description: `
+      Silvery jewelry brand, showcasing the epitome of elegance with exquisite Italian silver craftsmanship. Discover their collection of dazzling jewelry, designed to adorn every occasion with timeless beauty and sophistication
+      `
+   },
+   {
+      image: "/soda1.jpg",
+      description: `
+      Soda Terian: keep calm and drink on 
+
+      Beat the heat the summer with their refreshing soda , now available in multiple flavors.
+      `
+   }
+]
+
 export {
    pastEvents,
-   exploreDomains
+   exploreDomains,
+   sponsors
 }
