@@ -120,7 +120,7 @@ export default function Home() {
          }
 
          <main id="main" className="min-h-screen w-screen h-fit flex flex-col items-center gap-6">
-            {/* <ScrollProgress /> */}
+            <ScrollProgress />
             <Navbar />
             <Intro />
             <AboutArithemania3 />
