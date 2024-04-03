@@ -125,7 +125,7 @@ export default function Home() {
             <Intro />
             <AboutArithemania3 />
             <ExploreDomains />
-            {/* <Sponsors /> */}
+            <Sponsors />
             <Footer />
          </main>
       </NextUIProvider>
