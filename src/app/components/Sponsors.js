@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { TypingText } from './CustomText'
 import { Poppins } from 'next/font/google'
@@ -58,8 +58,9 @@ function Sponsors() {
                            transition={{ duration: 1 }}
                            className='flex flex-col sm:flex-row w-[90vw] items-center justify-between gap-6'
                         >
-                           <div className='flex justify-center w-[50vw] sm:w-[20vw] h-fit'>
+                           <div className={`bg-white flex justify-center w-[50vw] sm:w-[20vw] h-fit rounded-2xl`}>
                               <Image
+                                 className='w-full rounded-xl'
                                  src={sponsor.image}
                                  alt=""
                                  width={200}
