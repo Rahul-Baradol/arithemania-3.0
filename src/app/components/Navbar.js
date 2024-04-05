@@ -454,14 +454,14 @@ function Navbar() {
                <a target='_blank' href='https://shunyapes.vercel.app'>
                   <Image
                      src={shunyaUpdated}
-                     className='w-[60px] md:w-[75px] lg:w-[100px] aspect-auto'
+                     className='w-[60px] md:w-[75px] lg:w-[100px] aspect-auto hover:opacity-50 transition-opacity duration-1000'
                      alt=""
                   />
                </a>
                <a target='_blank' href='https://pes.edu/'>
                   <Image
                      src={pes}
-                     className='w-[60px] md:w-[75px] lg:w-[100px] aspect-auto'
+                     className='w-[60px] md:w-[75px] lg:w-[100px] aspect-auto hover:opacity-50 transition-opacity duration-1000'
                      alt=""
                   />
                </a>
