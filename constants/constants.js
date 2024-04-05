@@ -75,6 +75,12 @@ const sponsors = [
       background: "white"
    },
    {
+      image: "/asus.jpg",
+      description: `
+      Welcome to the ASUS ROG EXCLUSIVE STORE - JAYANAGAR, your premier destination for all things ASUS! As an authorized dealer, they provide top-notch computers, laptops, and accessories with unbeatable deals. Trust in their expertise as they offer reliable repairs and services, ensuring your ASUS products always perform at their best. Experience excellence with ASUS ROG EXCLUSIVE STORE - JAYANAGAR - where quality meets affordability.
+      `
+   }, 
+   {
       image: "/celio.png",
       description: `
       Founded in 1985, Celio has become, in less than 30 years, the leading men's ready-to-wear brand in France and a must-see internationally.
@@ -82,6 +88,12 @@ const sponsors = [
       This modern fashion brand offers the most exotic fashion wear for fashion-forward men.
       `,
       background: "white"
+   },
+   {
+      image: "/excel.jpg",
+      description: `
+      Excelcare Hospital, Bangalore is a world-class, multi-specialty hospital providing “corporate” medical facilities at affordable costs. The hospital has been envisaged and created by physicians with extensive experience and careers in the USA and UK.
+      `
    },
    {
       image: "/leons.png",
