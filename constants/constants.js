@@ -75,7 +75,7 @@ const sponsors = [
       background: "white"
    },
    {
-      image: "/asus.jpg",
+      image: "/asus-bright.jpg",
       description: `
       Welcome to the ASUS ROG EXCLUSIVE STORE - JAYANAGAR, your premier destination for all things ASUS! As an authorized dealer, they provide top-notch computers, laptops, and accessories with unbeatable deals. Trust in their expertise as they offer reliable repairs and services, ensuring your ASUS products always perform at their best. Experience excellence with ASUS ROG EXCLUSIVE STORE - JAYANAGAR - where quality meets affordability.
       `
