@@ -478,12 +478,15 @@ function Navbar() {
             >
                <button
                   onClick={() => {
-                     if (cookies.completedRegistration) {
-                        setSubmitStatus('You have already registered');
-                        submitStatusModal.onOpen();
-                     } else {
-                        formModal.onOpen();
-                     }
+                     // if (cookies.completedRegistration) {
+                     //    setSubmitStatus('You have already registered');
+                     //    submitStatusModal.onOpen();
+                     // } else {
+                     //    formModal.onOpen();
+                     // }
+
+                     setSubmitStatus('Results will be out soon! Stay tuned!');
+                     submitStatusModal.onOpen();
                   }}
                   className="bg-transparent text-white font-semibold text-[10px] px-4 py-2 sm:text-[12px] sm:px-8 sm:py-3 mr-5 rounded-lg border-2 border-white hover:bg-white hover:text-black transition duration-300"
                >
@@ -853,7 +856,7 @@ function Navbar() {
                <ModalContent>
                   {(onClose) => (
                      <>
-                        <ModalHeader className="text-white flex flex-col gap-1">Submission Status</ModalHeader>
+                        <ModalHeader className="text-white flex flex-col gap-1">Registration Closed</ModalHeader>
                         <ModalBody>
                            <p className='text-white'>
                               {submitStatus}
